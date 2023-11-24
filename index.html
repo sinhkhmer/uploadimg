@@ -1,0 +1,347 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Upload images to nudify and undress using our free to use AI deepnude app. See anyone naked.">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+    <title>DeepNude.gg - AI Deepnude Nudify | App Homepage</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+	
+			<script src="js/jquery.min.js"></script>
+				    <link rel="stylesheet" href="css/owl.carousel.min.css">
+            <link rel="stylesheet" href="css/owl.theme.default.min.css">
+            <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+            <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+            <script type="text/javascript" src="js/carousel.js"></script>
+				<script src="js/bootstrap.min.js"></script>
+	<script src="js/croppie.js"></script>
+    <link href="css/styles.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/croppie.css">
+	  </head>
+
+  <body>
+	    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal"><a href="https://app.deepnude.cc/upload"><img src="images/logo.png" width="178"></a></h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+				        <a class="p-2 text-dark" href="https://app.deepnude.cc/upload">Upload</a>
+                        <a class="p-2 text-dark" href="https://deepnude.cc/#pricing">Pricing</a>
+        
+              </nav>
+	  	  <a class="btn btn-outline-primary" href="https://app.deepnude.cc/login">Login</a>
+	  	  	
+
+    </div>
+	
+		
+	
+	
+	
+	
+
+    
+    	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-202446482-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-202446482-2');
+</script>
+
+	<div id="pricingHeader" class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Upload</h1>
+      <p class="lead">
+			</p><div id="processing" style="display: none;">
+							</div>
+			<div id="uploadMain">
+				<div class="actions">
+					<center>
+																	<script src="js/api.js" async="" defer=""></script>
+						<form id="captchaForm" action="https://app.deepnude.cc/upload" method="POST">
+						  <div class="g-recaptcha" data-sitekey="6Lc0hrodAAAAAGib__fKzGz4jGXcYw_sxHNGI8wy" data-callback="submitForm"></div>
+						  
+						</form>
+						<script>
+						var submitForm = function () {
+							$("#captchaForm").submit();
+						}
+						</script>
+																</center>
+				</div>
+				
+				
+				<div class="upload-demo-wrap">
+					<div id="upload-demo"></div>
+				</div>
+				
+				<script>
+				$( document ).ready(function() {
+					
+					function output(node) {
+						var existing = $('#result .croppie-result');
+						if (existing.length > 0) {
+							existing[0].parentNode.replaceChild(node, existing[0]);
+						}
+						else {
+							$('#result')[0].appendChild(node);
+						}
+					}
+
+					function popupResult(result) {
+						var html;
+						if (result.html) {
+							html = result.html;
+						}
+						if (result.src) {
+							html = '<img src="' + result.src + '" />';
+						}
+						swal({
+							title: '',
+							html: true,
+							text: html,
+							allowOutsideClick: true
+						});
+						setTimeout(function(){
+							$('.sweet-alert').css('margin', function() {
+								var top = -1 * ($(this).height() / 2),
+									left = -1 * ($(this).width() / 2);
+
+								return top + 'px 0 0 ' + left + 'px';
+							});
+						}, 1);
+					}
+					
+					var $uploadCrop;
+
+					function readFile(input) {
+						if (input.files && input.files[0]) {
+							var reader = new FileReader();
+							
+							reader.onload = function (e) {
+								$('.upload-demo').addClass('ready');
+								$uploadCrop.croppie('bind', {
+									url: e.target.result
+								}).then(function(){
+									console.log('jQuery bind complete');
+								});
+								
+							}
+							
+							reader.readAsDataURL(input.files[0]);
+						}
+						else {
+							swal("Sorry - you're browser doesn't support the FileReader API");
+						}
+					}
+					
+					cr_width = 600;
+					cr_height = 600;
+            		w_width = $( window ).width();
+            		
+            		if (w_width < 768){
+            			cr_width = 300;
+            			cr_height = 300;
+            		}
+            		if (w_width < 350){
+            			cr_width = 290;
+            			cr_height = 290;
+            		}
+            		
+            		$(window).resize(function() {
+            			w_width = $( window ).width();
+            			if (w_width < 768){
+            				cr_width = 300;
+            				cr_height = 300;
+            			}
+            		});
+
+					$uploadCrop = $('#upload-demo').croppie({
+						viewport: {
+							width: cr_width,
+							height: cr_height,
+							type: 'square'
+						}, 
+						boundary: {
+							width: cr_width,
+							height: cr_height
+						},
+						enableExif: false,
+						enforceBoundary: false,
+					});
+
+					$('#upload').on('change', function () { 
+						$(".upload-demo-wrap").show(); 
+						$(".upload-result").show();
+						
+						readFile(this); 
+					});
+					$('.upload-result').on('click', function (ev) {
+						var check_checkbox = $('input[name="choose_version"]').val();
+						if (check_checkbox == 1){
+							if (!$('.checkbox input').is(':checked')){
+								alert('Choose at least one version nudifier');
+								return false;
+							}
+						}
+					
+						$uploadCrop.croppie('result', {
+							type: 'base64',
+							size:  {
+								width: 1024,
+								height: 1024,
+								
+							},
+							quality: 0.75,
+							format: 'jpeg'
+						}).then(function (resp) {
+							//popupResult({
+							//	src: resp
+							//});
+							$("#uploadMain").hide(); 
+							$("#guideContainer").hide(); 
+							
+							var formData = new FormData();
+							formData.append("imageData", resp);
+							
+							if (check_checkbox == 1){
+								if ($('.checkbox input[name="v1"]').is(':checked')){
+									formData.append("ver1", '1');
+								}
+								if ($('.checkbox input[name="v2"]').is(':checked')){
+									formData.append("ver2", '1');
+								}
+							}
+							
+							$.ajax({
+								type: "POST",
+								url: "https://app.deepnude.cc/core/handler.php",
+								data: formData,
+								dataType:"text",
+								processData: false,
+								contentType: false,
+								success: function(response){
+									$( "#processing" ).empty().append( response ).show();
+								}
+							});
+							
+							console.log(resp);
+							
+						});
+					});
+				});
+				</script>
+				<style>
+				.file-btn {
+					position: relative;
+				}
+				.file-btn span {
+				
+				
+					
+						text-rendering: auto;
+						color: -internal-light-dark(black, white);
+						letter-spacing: normal;
+						word-spacing: normal;
+						
+						text-indent: 0px;
+						text-shadow: none;
+						display: inline-block;
+						text-align: center;
+						color: #fff;
+						cursor: default;
+						background-color: #226CE0;
+						padding: 1px 6px;
+						margin-top: -3px;
+						border: 2px solid #000000;
+				}
+				.file-btn input[type="file"] {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					opacity: 0;
+				}
+				.croppie-container .cr-viewport, .croppie-container .cr-resizer {
+					border: 2px solid black !important;
+				}
+				</style>
+			</div>
+											
+	  <p></p>
+    </div>
+
+   
+ <div class="container" id="guideContainer">
+	       <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">1</h4>
+          </div>
+          <div class="card-body">
+           
+			<img src="images/1.png">
+            <p>Zoom out to show majority of body, facing straight. Use a high resolution photo that has been resized to at least 1024px width.</p>
+            
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">2</h4>
+          </div>
+          <div class="card-body">
+            <img src="images/2.png">
+            <p>Avoid baggy clothing and coats. Single piece dresses are OK. Tighter clothing have better results.</p>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">3</h4>
+          </div>
+          <div class="card-body">
+            <img src="images/3.png">
+            <p>Good contrast between skin and clothing colors. Hair not blocking too much of body.<br><br></p>
+          </div>
+        </div>
+      </div>
+	       <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            DeepNude
+            <small class="d-block mb-3 text-muted">© 2023</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Navigation</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="https://app.deepnude.cc/upload">Upload</a></li>
+              <li><a class="text-muted" href="https://deepnude.tv/#pricing">Pricing</a></li>
+			  <li><a class="text-muted" href="https://app.deepnude.cc/tos">Terms of Service</a></li>
+			  <li><a class="text-muted" href="https://app.deepnude.cc/privacy">Privacy Policy</a></li>
+			  <li><a class="text-muted" href="https://app.deepnude.cc/2257">2257</a></li>
+			  <li><a class="text-muted" href="https://app.deepnude.cc/refunds">Refunds Policy</a></li>
+			  <li><a class="text-muted" href="https://app.deepnude.cc/contact">Contact</a></li>
+			  			  
+            </ul>
+          </div>
+    
+        </div>
+      </footer>
+    </div>
+
+	 
+	  
+
+</body></html>
